@@ -1,5 +1,3 @@
-
-
 export interface IRestaurant {
     id: number;
     name: string;
@@ -10,8 +8,23 @@ export interface IRestaurant {
     state: string;
     closeHour: string;
     openingHour: string;
+    Menu: IMenu;
 }
 
 interface IType {
     name: string;
+}
+
+interface IMenu {
+    backgroundColor: string;
+    MenuItems: IMenuItems[];
+}
+
+interface IMenuItems {
+    description: string;
+    id: number;
+    image: string;
+    menuId: number;
+    name: string;
+    price: string;
 }

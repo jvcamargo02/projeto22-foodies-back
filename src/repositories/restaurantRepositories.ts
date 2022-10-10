@@ -47,3 +47,27 @@ export async function findAll(location?: string, _limit?: string, _page?: string
     }
 }
 
+export async function findById(id: string) {
+    console.log(id)
+   return await prisma.restaurants.findUnique({
+        where: {
+            id: +id
+        },
+        select: {
+            id: true,
+            name: true,
+            image: true,
+            type: {
+                select: {
+                    name: true
+                }
+            },
+            Menu: {
+                select: {
+                    backgroundColor: true,
+                    MenuItem: true
+                }
+            }
+        }
+    })
+}
