@@ -11,9 +11,11 @@ datasource db {
 }
 
 model Users {
-  id       Int    @id @default(autoincrement())
-  email    String @unique @db.Text
-  password String @db.Text
+  id          Int           @id @default(autoincrement())
+  name String @db.Text
+  email       String        @unique @db.Text
+  password    String        @db.Text
+  UsersAddres UsersAddresses[]
 
   @@map("users")
 }
@@ -73,4 +75,18 @@ model MenuItem {
   menu        Menu   @relation(fields: [menuId], references: [id])
 
   @@map("menuItem")
+}
+
+model UsersAddresses {
+  id     Int     @id @default(autoincrement())
+  cep    String  @db.VarChar(8)
+  adress String  @db.Text
+  number String  @db.Text
+  city   String  @db.Text
+  state  String  @db.Text
+  isMain Boolean @db.Boolean
+  userId Int
+  user   Users   @relation(fields: [userId], references: [id])
+
+  @@map("usersAdresses")
 }
